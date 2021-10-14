@@ -7,3 +7,4 @@ the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor
 For this project I will be using Vue3
 
 Updates to follow.
+
