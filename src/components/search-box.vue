@@ -1,28 +1,56 @@
 <template>
-  <form action="submit" @submit.prevent>
+  <form v-on:submit.prevent="handleSubmit">
     <input
-      v-model="search"
-      class="search"
-      type="text"
-      placeholder="Search any IP address or domain"
+        v-model="search"
+        class="search"
+        :class="{ 'input-error': error }"
+        type="text"
+        :disabled="loading"
+        placeholder="Search any IP address or domain"
     />
     <button type="submit">
       <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
-        <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6" />
+        <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/>
       </svg>
     </button>
+    <p class="error" v-if="error">{{ error }}</p>
+    <!--    <p v-if="locationData">{{ locationData }}</p>-->
   </form>
 </template>
 
 <script>
+import {ref, watch} from "vue";
+import {getIP, error, loading, clearError} from "@/store/app.state";
+
+
 export default {
   name: "search-box",
-  data() {
-    return {
-      search: "",
-    };
+  setup() {
+    const search = ref("")
+
+    if (error) {
+      watch(search, function (newValue, oldValue) {
+        if (oldValue.length === 0 && newValue.length > 0) {
+          clearError()
+        }
+      })
+    }
+
+
+    async function handleSubmit() {
+      clearError()
+      try {
+        await getIP(search.value);
+        search.value = ""
+      } catch (e) {
+        console.log('error: ', e);
+      }
+    }
+
+    return {search, handleSubmit, error, loading};
   },
-};
+}
+;
 </script>
 
 <style scoped>
@@ -34,6 +62,15 @@ export default {
   max-width: 60rem;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.input-error {
+  border-color: var(--error-color);
 }
 
 button {
@@ -44,6 +81,9 @@ button {
   font-size: 1.8rem;
   border-bottom-right-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
-  border: none;
+  border-color: #111;
+  cursor: pointer;
 }
+
+
 </style>

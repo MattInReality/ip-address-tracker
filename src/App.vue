@@ -7,7 +7,7 @@ import HomeHeader from "@/components/home-header.vue";
 
 export default {
   name: "App",
-  components: { HomeHeader },
+  components: {HomeHeader},
 };
 </script>
 
@@ -17,6 +17,7 @@ export default {
 :root {
   --vd-gray: hsl(0, 0%, 17%);
   --d-gray: hsl(0, 0%, 59%);
+  --error-color: hsl(1, 100%, 50%)
 }
 
 *,

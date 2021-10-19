@@ -7,12 +7,17 @@
 
 <script>
 import searchBox from "@/components/search-box.vue";
+import {locationData} from "@/store/app.state";
 
 export default {
   name: "home-header",
   components: {
     searchBox,
   },
+  setup() {
+
+    return {locationData}
+  }
 };
 </script>
 
