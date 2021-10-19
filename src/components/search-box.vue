@@ -1,18 +1,20 @@
 <template>
   <form v-on:submit.prevent="handleSubmit">
-    <input
-        v-model="search"
-        class="search"
-        :class="{ 'input-error': error }"
-        type="text"
-        :disabled="loading"
-        placeholder="Search any IP address or domain"
-    />
-    <button type="submit">
-      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
-        <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/>
-      </svg>
-    </button>
+    <div class="search-container">
+      <input
+          v-model="search"
+          class="search"
+          :class="{ 'input-error': error }"
+          type="text"
+          :disabled="loading"
+          placeholder="Search any IP address or domain"
+      />
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
+          <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/>
+        </svg>
+      </button>
+    </div>
     <p class="error" v-if="error">{{ error }}</p>
     <!--    <p v-if="locationData">{{ locationData }}</p>-->
   </form>
@@ -54,23 +56,24 @@ export default {
 </script>
 
 <style scoped>
-.search {
-  padding: 1.4rem 2.8rem;
-  font-size: 1.8rem;
-  line-height: 1.6;
+
+.search-container {
+  display: flex;
   width: 95vw;
   max-width: 60rem;
-  border-top-left-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
+  justify-content: center;
+  /*align-items: stretch;*/
   margin-bottom: 2rem;
 }
 
-.error {
-  color: var(--error-color);
-}
-
-.input-error {
-  border-color: var(--error-color);
+.search {
+  padding: 1.4rem 2.8rem;
+  font-size: 1.8rem;
+  width: inherit;
+  max-width: inherit;
+  line-height: 1.6;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
 }
 
 button {
@@ -83,6 +86,14 @@ button {
   border-top-right-radius: 1.5rem;
   border-color: #111;
   cursor: pointer;
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.input-error {
+  border-color: var(--error-color);
 }
 
 
