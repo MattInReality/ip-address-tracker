@@ -2,26 +2,20 @@
   <header class="main-header">
     <h1 class="title">IP Address Tracker</h1>
     <search-box class="main-search"></search-box>
-    <!--    <info-card class="info"></info-card>-->
+    <info-card class="main-info-card"></info-card>
   </header>
 </template>
 
 <script>
-import searchBox from "@/components/search-box.vue";
-import {locationData} from "@/store/app.state";
-// import infoCard from '@/components/info-card';
-
+import searchBox from "@/components/SearchBox.vue";
+import InfoCard from "@/components/InfoCard";
 
 export default {
   name: "home-header",
   components: {
     searchBox,
-    // infoCard
+    InfoCard
   },
-  setup() {
-
-    return {locationData}
-  }
 };
 </script>
 
@@ -31,31 +25,30 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /*min-height: 40rem;*/
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  min-height: 35rem;
   justify-content: center;
   align-items: center;
-  /*position: relative;*/
+  position: relative;
 }
-
-.main-search {
-  grid-row: 2;
-  justify-self: center;
-}
-
-/*.info {*/
-/*  position: absolute;*/
-/*  bottom: 0;*/
-/*  transform: translateY(50%);*/
-/*  margin: 0 auto;*/
-/*}*/
 
 .title {
   color: #fff;
   font-size: 2.5rem;
   font-weight: 700;
   grid-row: 1;
-  align-self: end;
+  margin: 3rem 0;
 }
+
+.main-search {
+  grid-row: 2;
+  justify-self: center;
+  margin-bottom: 3rem;
+}
+
+.main-info-card {
+  margin-bottom: -18rem;
+}
+
 </style>

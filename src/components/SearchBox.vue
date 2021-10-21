@@ -15,6 +15,7 @@
         </svg>
       </button>
     </div>
+    <!--    TODO sort layout shift issue related to the below element-->
     <p class="error" v-if="error">{{ error }}</p>
     <!--    <p v-if="locationData">{{ locationData }}</p>-->
   </form>
@@ -60,9 +61,8 @@ export default {
 .search-container {
   display: flex;
   width: 95vw;
-  max-width: 60rem;
+  max-width: 50rem;
   justify-content: center;
-  /*align-items: stretch;*/
   margin-bottom: 2rem;
 }
 
