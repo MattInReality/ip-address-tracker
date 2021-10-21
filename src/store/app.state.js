@@ -9,13 +9,15 @@ const state = reactive(
     })
 
 function setLocationData(data) {
-    console.log('update IP location data')
-    state.locationData = data
+    console.log(data)
+    state.locationData = {
+        'IP Address': data.ip,
+        'Location': Object.entries(data.location).map(([k, v]) => ['city', 'region', 'postalCode'].includes(k) ? v : undefined).join(' ').trim(),
+        'Timezone': Object.entries(data.location).map(([k, v]) => k === 'timezone' ? 'UTC ' + v : undefined).join(' ').trim(),
+        'ISP': data.isp,
+    }
 }
 
-function clearLocationData() {
-    state.locationDate = undefined
-}
 
 function setError(errorMessage) {
     state.error = errorMessage
@@ -28,7 +30,6 @@ function clearError() {
 async function getIP(searchString = '') {
     state.loading = true
     try {
-        clearLocationData()
         const ipData = await getIPLocation(searchString)
         return setLocationData(ipData)
 
@@ -43,10 +44,11 @@ const locationData = computed(() => state.locationData)
 const error = computed(() => state.error)
 const loading = computed(() => state.loading)
 
+
 export {
     getIP,
     clearError,
     locationData,
     error,
-    loading
+    loading,
 }
