@@ -1,19 +1,19 @@
 <template>
   <home-header class="main-header">Hello World</home-header>
-  <!--  <info-card class="main-info-card"></info-card>-->
+  <map-display></map-display>
 </template>
 
 <script>
+import {onMounted} from "vue";
 
 import HomeHeader from "@/components/HomeHeader.vue";
-// import InfoCard from '@/components/InfoCard';
-import {onMounted} from "vue";
+import MapDisplay from "@/components/MapDisplay";
 import {getIP} from "@/store/app.state";
 
 
 export default {
   name: "App",
-  components: {HomeHeader},
+  components: {HomeHeader, MapDisplay},
   setup() {
 
     onMounted(() => {
