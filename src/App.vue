@@ -1,6 +1,6 @@
 <template>
   <home-header class="main-header">Hello World</home-header>
-  <map-display></map-display>
+  <map-display class="map"></map-display>
 </template>
 
 <script>

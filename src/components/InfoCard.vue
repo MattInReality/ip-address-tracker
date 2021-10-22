@@ -38,7 +38,7 @@ export default {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
   padding: 1rem;
   min-height: 16rem;
-  z-index: 10;
+  z-index: 999;
 }
 
 .info-container {
