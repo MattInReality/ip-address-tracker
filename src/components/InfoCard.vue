@@ -63,7 +63,7 @@ export default {
   align-self: stretch;
 }
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 768px) {
   .info-container {
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
   }

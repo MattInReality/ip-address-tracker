@@ -1,6 +1,10 @@
 <template>
-  <l-map class="map-id" v-model="zoom" v-model:zoom="zoom" min-zoom="10" max-zoom="20" :center="mapCenter">
-    <l-tile-layer style="height: 100%" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+  <l-map class="map-id" :options="mapOptions" v-model="zoom"
+         v-model:zoom="zoom"
+         min-zoom="10"
+         max-zoom="19"
+         :center="mapCenter">
+    <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
     <l-marker v-if="!loading" class="map-markers" :lat-lng="mapCenter">
       <l-icon :icon-url="iconUrl" :icon-size="iconSize"></l-icon>
     </l-marker>
@@ -17,11 +21,19 @@ import "leaflet/dist/leaflet.css";
 export default {
   name: 'map-display',
   components: {LMap, LTileLayer, LMarker, LIcon},
+
   setup() {
     const zoom = ref(15)
     const mapCenter = coords
     const iconWidth = ref(50)
     const iconHeight = ref(60)
+    const mapOptions = {
+      dragging: true,
+      touchZoom: 'center',
+      zoomControl: false,
+      inertia: true,
+      bounceAtZoomLimits: true
+    }
     const getZoom = computed(() => {
       if (zoom.value >= 5 && zoom.value <= 19) {
         return zoom.value
@@ -32,7 +44,7 @@ export default {
     const iconUrl = computed(() => '/icon-location.svg')
     const iconSize = computed(() => [iconWidth.value, iconHeight.value])
 
-    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading}
+    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading, mapOptions}
 
   }
 }
@@ -41,7 +53,8 @@ export default {
 <style scoped>
 
 .map-id {
-  min-height: 100rem;
+  min-height: 70vh;
+  height: 100%;
   width: 100vw;
 }
 
