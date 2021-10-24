@@ -53,7 +53,7 @@ export default {
 <style scoped>
 
 .map-id {
-  min-height: 70vh;
+  min-height: 60vh;
   height: 100%;
   width: 100vw;
 }

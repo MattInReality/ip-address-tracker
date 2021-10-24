@@ -52,9 +52,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-size: 1.8rem;
-  min-height: 100vh;
-
+  height: 100vh;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
 }
 
+.main-header {
+  grid-row: 1 / span 2;
+  z-index: 750;
+}
+
+.map {
+  grid-row: 3 / -1;
+  overflow: hidden;
+}
 
 </style>

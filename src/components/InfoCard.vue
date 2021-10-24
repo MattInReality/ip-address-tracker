@@ -32,7 +32,7 @@ export default {
 .info-card {
   -webkit-border-radius: 2.5rem;
   -moz-border-radius: 2.5rem;
-  border-radius: 2.5rem;
+  border-radius: 1.5rem;
   background-color: #fff;
   width: 90vw;
   max-width: 110rem;
@@ -66,6 +66,7 @@ export default {
 @media screen and (min-width: 768px) {
   .info-container {
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    padding: 1rem 2rem;
   }
 
   .info-item:nth-of-type(odd) {
