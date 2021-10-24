@@ -19,17 +19,17 @@ export default {
 <style scoped>
 
 .info-item {
-  margin: 1rem 1rem;
+  margin: 0.5rem 1rem;
   padding: 0 1rem;
 }
 
 .info-item > * {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .info-heading {
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #aaa;
 }

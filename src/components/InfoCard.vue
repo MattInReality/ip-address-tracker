@@ -1,6 +1,7 @@
 <template>
   <div class="info-card">
     <!-- TODO:   wrap this in a transition element-->
+    <!--    TODO: Fix layout shift on load in mobile-->
     <div class="info-container" v-if="!loading">
       <info-element class="info-item" v-for="[k,v] in Object.entries(locationData)" :heading="k" :data="v"
                     :key="v"></info-element>
@@ -33,16 +34,16 @@ export default {
   -moz-border-radius: 2.5rem;
   border-radius: 2.5rem;
   background-color: #fff;
-  width: 95vw;
+  width: 90vw;
   max-width: 110rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
   padding: 1rem;
-  min-height: 16rem;
+  min-height: fit-content;
   z-index: 999;
 }
 
 .info-container {
-  padding: 2rem;
+  padding: 0rem 2rem;
   width: 100%;
   height: 100%;
   display: grid;

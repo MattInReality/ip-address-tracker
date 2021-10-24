@@ -58,16 +58,18 @@ export default {
 
 <style scoped>
 
+
+/*TODO: Sort spacing so it's consistent between components.*/
 .search-container {
   display: flex;
-  width: 95vw;
+  width: 90vw;
   max-width: 50rem;
   justify-content: center;
   margin-bottom: 2rem;
 }
 
 .search {
-  padding: 1.4rem 2.8rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1.8rem;
   width: inherit;
   max-width: inherit;

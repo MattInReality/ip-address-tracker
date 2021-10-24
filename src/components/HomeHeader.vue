@@ -27,7 +27,7 @@ export default {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  min-height: 35rem;
+  min-height: 30vh;
   justify-content: center;
   align-items: center;
   position: relative;
