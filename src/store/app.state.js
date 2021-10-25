@@ -10,15 +10,13 @@ const state = reactive(
     })
 
 function setLocationData(data) {
+    const {city, region, postalCode, timezone, lat, lng} = data.location;
     state.locationData = {
         'IP Address': data.ip,
-        'Location': Object.entries(data.location).map(([k, v]) => ['city', 'region', 'postalCode'].includes(k) ? v : undefined).join(' ').trim(),
-        'Timezone': Object.entries(data.location).map(([k, v]) => k === 'timezone' ? 'UTC ' + v : undefined).join(' ').trim(),
+        'Location': `${city}, ${region} ${postalCode ? `, ${postalCode}` : ''}`,
+        'Timezone': `UTC ${timezone}`,
         'ISP': data.isp,
     }
-
-    const lat = data.location.lat ?? 0
-    const lng = data.location.lng ?? 0
     state.coords = [lat, lng]
 }
 
