@@ -63,8 +63,8 @@ html {
 }
 
 .map {
-  grid-row: 3 / -1;
-  overflow: hidden;
+  grid-row: 4 / -1;
+  min-height: 60vh;
 }
 
 </style>

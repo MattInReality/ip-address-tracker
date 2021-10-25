@@ -1,14 +1,16 @@
 <template>
-  <l-map class="map-id" :options="mapOptions" v-model="zoom"
-         v-model:zoom="zoom"
-         min-zoom="10"
-         max-zoom="19"
-         :center="mapCenter">
-    <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
-    <l-marker v-if="!loading" class="map-markers" :lat-lng="mapCenter">
-      <l-icon :icon-url="iconUrl" :icon-size="iconSize"></l-icon>
-    </l-marker>
-  </l-map>
+  <div class="map-wrapper">
+    <l-map class="map-id" :options="mapOptions" v-model="zoom"
+           v-model:zoom="zoom"
+           min-zoom="10"
+           max-zoom="19"
+           :center="mapCenter">
+      <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-marker v-if="!loading" class="map-markers" :lat-lng="mapCenter">
+        <l-icon :icon-url="iconUrl" :icon-size="iconSize"></l-icon>
+      </l-marker>
+    </l-map>
+  </div>
 </template>
 
 <script>
@@ -32,7 +34,7 @@ export default {
       touchZoom: 'center',
       zoomControl: false,
       inertia: true,
-      bounceAtZoomLimits: true
+      bounceAtZoomLimits: true,
     }
     const getZoom = computed(() => {
       if (zoom.value >= 5 && zoom.value <= 19) {
@@ -53,14 +55,14 @@ export default {
 <style scoped>
 
 .map-id {
-  min-height: 60vh;
+  /*min-height: 60vh;*/
   height: 100%;
   width: 100vw;
 }
 
 .map-markers {
   z-index: 500;
-  height: 100%;
+  /*height: 100%;*/
   width: 100%;
 }
 
