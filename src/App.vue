@@ -1,6 +1,7 @@
 <template>
   <home-header class="main-header">Hello World</home-header>
-  <map-display class="map"></map-display>
+  <info-card class="info-card"></info-card>
+  <map-display class="map-card"></map-display>
 </template>
 
 <script>
@@ -8,12 +9,13 @@ import {onMounted} from "vue";
 
 import HomeHeader from "@/components/HomeHeader.vue";
 import MapDisplay from "@/components/MapDisplay";
+import InfoCard from "@/components/InfoCard";
 import {getIP} from "@/store/app.state";
 
 
 export default {
   name: "App",
-  components: {HomeHeader, MapDisplay},
+  components: {HomeHeader, InfoCard, MapDisplay},
   setup() {
 
     onMounted(() => {
@@ -54,16 +56,27 @@ html {
   font-size: 1.8rem;
   height: 100vh;
   display: grid;
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 10rem) auto auto repeat(6, 1fr);
 }
 
 .main-header {
-  grid-row: 1 / span 2;
+  grid-row: 1 / span 3;
+  grid-column: 1;
   z-index: 750;
 }
 
-.map {
+.info-card {
+  grid-row: 3 / span 2;
+  grid-column: 1;
+  z-index: 999;
+  place-self: center;
+  height: max-content;
+
+}
+
+.map-card {
   grid-row: 4 / -1;
+  grid-column: 1;
   min-height: 60vh;
 }
 
