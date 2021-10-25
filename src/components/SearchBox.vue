@@ -1,6 +1,7 @@
 <template>
   <form v-on:submit.prevent="handleSubmit">
     <div class="search-container">
+      <!--      TODO: Add validation-->
       <input
           v-model="search"
           class="search"

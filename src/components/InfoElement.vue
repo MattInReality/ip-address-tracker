@@ -1,5 +1,6 @@
 <template>
   <div class="info-item">
+    <!--    TODO: Add loader-->
     <h2 class="info-heading">{{ heading }}</h2>
     <p class="info-data">{{ data }}</p>
   </div>

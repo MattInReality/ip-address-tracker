@@ -1,9 +1,10 @@
 <template>
   <div class="map-wrapper">
+    <!--    TODO Add a loader and transition here-->
     <l-map class="map-id" :options="mapOptions" v-model="zoom"
            v-model:zoom="zoom"
-           min-zoom="10"
-           max-zoom="19"
+           :min-zoom="minZoom"
+           :max-zoom="maxZoom"
            :center="mapCenter">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
       <l-marker v-if="!loading" class="map-markers" :lat-lng="mapCenter">
@@ -26,6 +27,8 @@ export default {
 
   setup() {
     const zoom = ref(15)
+    const minZoom = ref(10)
+    const maxZoom = ref(19)
     const mapCenter = coords
     const iconWidth = ref(50)
     const iconHeight = ref(60)
@@ -46,7 +49,7 @@ export default {
     const iconUrl = computed(() => '/icon-location.svg')
     const iconSize = computed(() => [iconWidth.value, iconHeight.value])
 
-    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading, mapOptions}
+    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading, mapOptions, minZoom, maxZoom}
 
   }
 }

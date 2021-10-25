@@ -1,7 +1,6 @@
 <template>
   <div class="info-card">
     <!-- TODO:   wrap this in a transition element-->
-    <!--    TODO: Fix layout shift on load in mobile-->
     <div class="info-container" v-if="!loading">
       <info-element class="info-item" v-for="[k,v] in Object.entries(locationData)" :heading="k" :data="v"
                     :key="v"></info-element>
@@ -43,7 +42,7 @@ export default {
 }
 
 .info-container {
-  padding: 0rem 2rem;
+  padding: 0 2rem;
   width: 100%;
   height: 100%;
   display: grid;
