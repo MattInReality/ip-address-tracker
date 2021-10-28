@@ -70,11 +70,12 @@ export default {
 }
 
 .search {
-  padding: 0.5rem 1.5rem;
-  font-size: 1.8rem;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.4rem;
   width: inherit;
   max-width: inherit;
-  line-height: 1.6;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
 }
@@ -83,7 +84,8 @@ button {
   background-color: #111;
   color: #cfcfcf;
   line-height: 1.6;
-  padding: 1.4rem 2rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
   font-size: 1.8rem;
   border-bottom-right-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
