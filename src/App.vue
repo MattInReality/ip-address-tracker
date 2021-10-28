@@ -80,4 +80,13 @@ html {
   min-height: 60vh;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 </style>

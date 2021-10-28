@@ -1,18 +1,26 @@
 <template>
   <div class="info-item">
-    <!--    TODO: Add loader-->
     <h2 class="info-heading">{{ heading }}</h2>
-    <p class="info-data">{{ data }}</p>
+    <text-loader v-if="loading"></text-loader>
+    <p v-else class="info-data">{{ data }}</p>
   </div>
 </template>
 
 <script>
+import TextLoader from "@/components/TextLoader";
 
 export default {
   name: 'info-element',
+  components: {
+    TextLoader,
+  },
   props: {
     heading: String,
-    data: String
+    data: String,
+    loading: {
+      type: Boolean,
+      default: true
+    }
   }
 }
 </script>
@@ -39,6 +47,9 @@ export default {
   font-size: 2.3rem;
   font-weight: 500;
   color: #1f1f1f;
+  opacity: 0;
+  animation: fade-in 1s;
+  animation-fill-mode: forwards;
 }
 
 @media screen and (min-width: 1000px) {
