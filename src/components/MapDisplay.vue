@@ -1,6 +1,6 @@
 <template>
   <div class="map-wrapper">
-    <!--    TODO Add a loader and transition here-->
+    <map-loader v-if="loading"></map-loader>
     <l-map class="map-id" :options="mapOptions" v-model="zoom"
            v-model:zoom="zoom"
            :min-zoom="minZoom"
@@ -20,10 +20,11 @@ import "leaflet/dist/leaflet.css"
 import {coords, loading} from "@/store/app.state";
 import {LMap, LTileLayer, LMarker, LIcon} from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
+import MapLoader from "@/components/MapLoader";
 
 export default {
   name: 'map-display',
-  components: {LMap, LTileLayer, LMarker, LIcon},
+  components: {LMap, LTileLayer, LMarker, LIcon, MapLoader},
 
   setup() {
     const zoom = ref(15)
@@ -58,14 +59,12 @@ export default {
 <style scoped>
 
 .map-id {
-  /*min-height: 60vh;*/
   height: 100%;
   width: 100vw;
 }
 
 .map-markers {
   z-index: 500;
-  /*height: 100%;*/
   width: 100%;
 }
 
