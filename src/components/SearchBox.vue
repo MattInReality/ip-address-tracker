@@ -1,11 +1,11 @@
 <template>
   <form v-on:submit.prevent="handleSubmit">
+    <label for="searchbox" class="search-label" aria-label="Search"></label>
     <div class="search-container">
-      <!--      TODO: Add validation-->
       <input
+          id="searchbox"
           v-model="search"
           class="search"
-          :class="{ 'input-error': error }"
           type="text"
           :disabled="loading"
           placeholder="Search any IP address or domain"
@@ -16,15 +16,14 @@
         </svg>
       </button>
     </div>
-    <!--    TODO sort layout shift issue related to the below element-->
-    <p class="error" v-if="error">{{ error }}</p>
-    <!--    <p v-if="locationData">{{ locationData }}</p>-->
   </form>
+  <p class="error" v-if="error">{{ error }}</p>
 </template>
 
 <script>
 import {ref, watch} from "vue";
-import {getIP, error, loading, clearError} from "@/store/app.state";
+import {getIP, error, loading, clearError, setError} from "@/store/app.state";
+import {validateDomain, validateIPAddress} from "../../lib/validators";
 
 
 export default {
@@ -43,11 +42,15 @@ export default {
 
     async function handleSubmit() {
       clearError()
+      const validDomain = validateDomain(search.value)
+      const validIP = validateIPAddress(search.value)
       try {
-        await getIP(search.value);
-        search.value = ""
+        if (!validDomain && !validIP) {
+          return setError('Please provide a valid IP address or domain')
+        }
+        await getIP(search.value)
       } catch (e) {
-        console.log('error: ', e);
+        setError(e.message);
       }
     }
 
@@ -59,14 +62,12 @@ export default {
 
 <style scoped>
 
-
-/*TODO: Sort spacing so it's consistent between components.*/
 .search-container {
   display: flex;
   width: 90vw;
   max-width: 50rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .search {
@@ -78,6 +79,11 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
+}
+
+.search-label {
+  visibility: hidden;
+  height: 0;
 }
 
 button {
@@ -95,10 +101,14 @@ button {
 
 .error {
   color: var(--error-color);
-}
-
-.input-error {
-  border-color: var(--error-color);
+  font-weight: 500;
+  font-size: 1.4rem;
+  background: white;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  width: fit-content;
+  padding: 0.3rem 1.2rem;
 }
 
 

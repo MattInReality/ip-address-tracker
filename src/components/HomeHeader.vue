@@ -1,7 +1,7 @@
 <template>
   <header class="main-header">
     <h1 class="title">IP Address Tracker</h1>
-    <search-box class="main-search"></search-box>
+    <search-box></search-box>
   </header>
 </template>
 

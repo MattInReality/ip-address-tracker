@@ -33,6 +33,9 @@ async function getIP(searchString = '') {
     state.loading = true
     try {
         const ipData = await getIPLocation(searchString)
+        if (ipData.code) {
+            return setError('Not found, please try something else.')
+        }
         return setLocationData(ipData)
 
     } catch (e) {
@@ -54,5 +57,6 @@ export {
     locationData,
     coords,
     error,
+    setError,
     loading,
 }
