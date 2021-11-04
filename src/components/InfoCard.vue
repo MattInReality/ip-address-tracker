@@ -3,7 +3,8 @@
     <div class="info-container">
       <info-element class="info-item" v-for="(f, i) in fields" :heading="f" :data="locationData[f]"
                     :loading="loading"
-                    :key="i"></info-element>
+                    :key="i">
+      </info-element>
 
     </div>
   </div>
@@ -37,7 +38,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  min-height: 14rem;
+  min-height: 16rem;
   height: fit-content;
   z-index: 999;
 }

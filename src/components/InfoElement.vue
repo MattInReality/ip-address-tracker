@@ -38,7 +38,8 @@ export default {
 
 .info-heading {
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
   font-weight: 700;
   color: #aaa;
 }

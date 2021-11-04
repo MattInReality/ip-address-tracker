@@ -1,9 +1,12 @@
 <template>
-  <div class="lds-ellipsis">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+
+  <div class="text-loader">
+    <div class="lds-ellipsis">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -14,11 +17,16 @@ export default {
 </script>
 
 <style scoped>
+
+.text-loader {
+  display: flex;
+  justify-content: center;
+}
+
 .lds-ellipsis {
   position: relative;
-  width: 100%;
+  width: 8rem;
   height: 4rem;
-  margin-left: -8px;
 }
 
 .lds-ellipsis div {
@@ -75,6 +83,16 @@ export default {
   }
   100% {
     transform: translate(24px, 0);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .text-loader {
+    justify-content: flex-start;
+  }
+
+  .lds-ellipsis {
+    margin-left: -8px;
   }
 }
 
