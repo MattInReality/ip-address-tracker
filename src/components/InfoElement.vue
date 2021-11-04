@@ -27,11 +27,6 @@ export default {
 
 <style scoped>
 
-.info-item {
-  margin: 0.5rem 1rem;
-  padding: 0 1rem;
-}
-
 .info-item > * {
   margin-bottom: 0.8rem;
 }

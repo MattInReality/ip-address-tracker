@@ -62,11 +62,18 @@ export default {
   opacity: 0;
   animation: fade-in 0.5s linear;
   animation-fill-mode: forwards;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
 }
 
 @media screen and (min-width: 768px) {
   .info-container {
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    padding: 1rem 2rem;
+  }
+
+  .info-item {
     padding: 1rem 2rem;
   }
 
