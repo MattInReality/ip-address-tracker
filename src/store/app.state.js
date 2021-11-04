@@ -13,7 +13,7 @@ function setLocationData(data) {
     const {city, region, postalCode, timezone, lat, lng} = data.location;
     state.locationData = {
         'IP Address': data.ip,
-        'Location': `${city}, ${region} ${postalCode ? `, ${postalCode}` : ''}`,
+        'Location': `${city}, ${region}${postalCode ? `, ${postalCode}` : ''}`,
         'Timezone': `UTC ${timezone}`,
         'ISP': data.isp,
     }
