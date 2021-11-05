@@ -31,8 +31,6 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
@@ -93,16 +91,14 @@ I found a [Dev.to blog post](https://dev.to/fabiorosado/hide-your-api-keys-with-
 keys with Netlify functions. Which I planned to use for deployment... until my API allowance ran out. Currently I'm
 rethinking the whole project so...
 
-The biggest thing I learnt... To read the details of a free tier on an API before coding around it.
+The most important lesson learnt... To read the details of a free tier on an API before coding around it.
 
 ### Continued development
 
 It's endless really isn't it? I'd like to build something bigger in vue. Though I'm considering building my own api
 proxy instead so I can get around this problem of api keys.
 
-I think I need to spend some time looking up CSS grid layout strategies. I'd also like to spend some time working
-through prod/dev environmental differences so I can work around issues like deployment to Netlify functions without
-having to overwrite code close to deployment.
+I think I need to spend some time looking up CSS grid layout strategies.
 
 ### Useful resources
 
