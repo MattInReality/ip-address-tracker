@@ -18,7 +18,15 @@ export default {
   components: {HomeHeader, InfoCard, MapDisplay},
   setup() {
 
+    const height = window.innerHeight * 0.01
+
     onMounted(() => {
+      let root = document.querySelector('#app')
+
+      console.log(height)
+
+      root.style.setProperty('--app-height', `${height}px`)
+
       getIP()
     })
 
@@ -33,7 +41,8 @@ export default {
 :root {
   --vd-gray: hsl(0, 0%, 17%);
   --d-gray: hsl(0, 0%, 59%);
-  --error-color: hsl(1, 100%, 50%)
+  --error-color: hsl(1, 100%, 50%);
+  --app-height: 100vh;
 }
 
 *,
@@ -55,6 +64,7 @@ html {
   text-align: center;
   font-size: 1.8rem;
   height: 100vh;
+  height: calc(var(--app-height, 1vh) * 100);
   display: grid;
   grid-template-rows: repeat(2, 10rem) auto auto repeat(6, 1fr);
 }
@@ -77,7 +87,6 @@ html {
 .map-card {
   grid-row: 4 / -1;
   grid-column: 1;
-  min-height: 60vh;
 }
 
 @keyframes fade-in {

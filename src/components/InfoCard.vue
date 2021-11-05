@@ -44,6 +44,7 @@ export default {
 }
 
 .info-container {
+  margin: 1rem;
   padding: 0 2rem;
   width: 100%;
   height: 100%;
@@ -64,7 +65,7 @@ export default {
   animation-fill-mode: forwards;
   margin-top: 1rem;
   margin-bottom: 1rem;
-
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
@@ -74,11 +75,38 @@ export default {
   }
 
   .info-item {
-    padding: 1rem 2rem;
+    padding: 2rem;
+    margin: 0;
   }
 
-  .info-item:nth-of-type(odd) {
-    border-right: 1px solid rgba(0, 0, 0, 0.5);
+  .info-item:nth-child(-n+2) {
+    padding-bottom: 2rem;
+  }
+
+  .info-item:nth-child(-n+2):before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    z-index: 10;
+    border-bottom: 1px solid #afafaf;
+  }
+
+  .info-item:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 75%;
+    z-index: 10;
+    border-right: 1px solid #afafaf;
+  }
+
+  .info-item:nth-of-type(even):after {
+    content: none;
   }
 }
 
@@ -87,8 +115,12 @@ export default {
     grid-template: 1fr / repeat(4, 1fr);
   }
 
-  .info-item:nth-child(2) {
-    border-right: 1px solid rgba(0, 0, 0, 0.5);
+  .info-item:nth-child(2):after {
+    content: '';
+  }
+
+  .info-item:nth-child(-n+2):before {
+    content: none;
   }
 }
 

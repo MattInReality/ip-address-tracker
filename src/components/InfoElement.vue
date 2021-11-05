@@ -27,9 +27,6 @@ export default {
 
 <style scoped>
 
-.info-item > * {
-  margin-bottom: 0.8rem;
-}
 
 .info-heading {
   text-transform: uppercase;
@@ -37,6 +34,7 @@ export default {
   letter-spacing: 1px;
   font-weight: 700;
   color: #aaa;
+  margin-bottom: 0.8rem;
 }
 
 .info-data {
