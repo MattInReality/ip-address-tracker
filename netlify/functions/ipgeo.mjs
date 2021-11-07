@@ -1,0 +1,36 @@
+import fetch from 'node-fetch'
+import {createQueryKey} from '../../lib/api-calls'
+import querystring from 'querystring'
+
+function validatedQueryString(query) {
+    const key = createQueryKey(query)
+    if (key) {
+        return querystring.stringify({
+            [key]: query
+        })
+    }
+    return ''
+}
+
+function ipGeoLocationUrl(query) {
+    const qs = validatedQueryString(query)
+    return `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.IPGEO_KEY}${qs ? `&${qs}` : ''}`
+}
+
+exports.handler = async (event) => {
+    try {
+        const {search} = event.body || ""
+        const res = await fetch(ipGeoLocationUrl(search))
+        const data = await res.json()
+        return {
+            statusCode: 200,
+            body: data
+        }
+    } catch (e) {
+        console.log('ERROR', e)
+        return {
+            statusCode: 400,
+            body: JSON.stringify({message: "Something went wrong"})
+        }
+    }
+}

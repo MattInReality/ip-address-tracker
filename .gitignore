@@ -47,3 +47,6 @@ pnpm-debug.log*
 .idea/**/aws.xml
 
 keys.js
+
+# Local Netlify folder
+.netlify

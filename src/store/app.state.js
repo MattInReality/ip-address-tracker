@@ -1,5 +1,5 @@
 import {reactive, computed} from "vue";
-import {getIPLocation} from "../../lib/api-calls";
+// import {getIPLocation} from "../../lib/api-calls";
 
 const state = reactive(
     {
@@ -32,7 +32,10 @@ function clearError() {
 async function getIP(searchString = '') {
     state.loading = true
     try {
-        const ipData = await getIPLocation(searchString)
+        const ipData = await fetch("../../.netlify/functions/ipgeo", {
+            method: 'POST',
+            body: JSON.stringify({search: searchString})
+        })
         if (ipData.code) {
             return setError('Not found, please try something else.')
         }
