@@ -12,15 +12,15 @@ function validatedQueryString(query) {
     return ''
 }
 
-function ipGeoLocationUrl(query) {
+function ipGeoLocationUrl(query, key) {
     const qs = validatedQueryString(query)
-    return `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.IPGEO_KEY}${qs ? `&${qs}` : ''}`
+    return `https://geo.ipify.org/api/v2/country,city?apiKey=${key}${qs ? `&${qs}` : ''}`
 }
 
 exports.handler = async (event) => {
     try {
         const {search} = event.body || ""
-        const res = await fetch(ipGeoLocationUrl(search))
+        const res = await fetch(ipGeoLocationUrl(search, process.env.IPGEO_KEY))
         const data = await res.json()
         return {
             statusCode: 200,
