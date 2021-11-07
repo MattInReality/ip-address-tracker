@@ -20,7 +20,7 @@ function ipGeoLocationUrl(query, key) {
 exports.handler = async (event) => {
     try {
         const {search} = event.body || ""
-        const res = await fetch(ipGeoLocationUrl(search, process.env.IPGEO_KEY))
+        const res = await fetch(ipGeoLocationUrl(search, process.env.FM_002_IPGEO_KEY))
         const data = await res.json()
         return {
             statusCode: 200,
