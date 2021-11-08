@@ -32,14 +32,14 @@ async function getIP(searchString = '') {
     const myHeaders = new Headers()
     myHeaders.append('accept', 'application/json')
     try {
-        const ipData = await fetch("http://localhost:9999/.netlify/functions/ipgeo", {
+        const ipData = await fetch("../../.netlify/functions/ipgeo", {
             method: 'POST',
             body: JSON.stringify({search: searchString}),
             headers: myHeaders
         })
 
         const data = await ipData.json()
-        
+
         if (data.code) {
             switch (data.code) {
                 case 403:
