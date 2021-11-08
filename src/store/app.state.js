@@ -1,5 +1,4 @@
 import {reactive, computed} from "vue";
-// import {getIPLocation} from "../../lib/api-calls";
 
 const state = reactive(
     {
@@ -10,16 +9,15 @@ const state = reactive(
     })
 
 function setLocationData(data) {
-    const {city, region, postalCode, timezone, lat, lng} = data.location;
+    const {ip, city, region, postalCode, timezone: time_zone, lat: latitude, lng: longitude, isp} = data;
     state.locationData = {
-        'IP Address': data.ip,
+        'IP Address': ip,
         'Location': `${city}, ${region}${postalCode ? `, ${postalCode}` : ''}`,
-        'Timezone': `UTC ${timezone}`,
-        'ISP': data.isp,
+        'Timezone': `UTC ${time_zone.offset}`,
+        'ISP': isp,
     }
-    state.coords = [lat, lng]
+    state.coords = [latitude, longitude]
 }
-
 
 function setError(errorMessage) {
     state.error = errorMessage
@@ -34,7 +32,7 @@ async function getIP(searchString = '') {
     const myHeaders = new Headers()
     myHeaders.append('accept', 'application/json')
     try {
-        const ipData = await fetch("../../.netlify/functions/ipgeo", {
+        const ipData = await fetch("http://localhost:9999/.netlify/functions/ipgeo", {
             method: 'POST',
             body: JSON.stringify({search: searchString}),
             headers: myHeaders
@@ -42,6 +40,7 @@ async function getIP(searchString = '') {
 
         const data = await ipData.json()
 
+        console.log(data)
         if (data.code) {
             switch (data.code) {
                 case 403:

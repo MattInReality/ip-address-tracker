@@ -10,7 +10,7 @@ function validatedQueryString(query) {
     const key = createQueryKey(query)
     if (key) {
         return querystring.stringify({
-            [key]: query
+            ip: query
         })
     }
     return ''
@@ -18,13 +18,13 @@ function validatedQueryString(query) {
 
 function ipGeoLocationUrl(query, key) {
     const qs = validatedQueryString(query)
-    return `https://geo.ipify.org/api/v2/country,city?apiKey=${key}${qs ? `&${qs}` : ''}`
+    return `https://api.ipgeolocation.io/ipgeo?apiKey=${key}${qs ? `&${qs}` : ''}`
 }
 
 exports.handler = async (event) => {
     try {
         const {search} = await JSON.parse(event?.body) ?? ''
-        const res = await fetch(ipGeoLocationUrl(search, process.env.FM_002_IPGEO_KEY))
+        const res = await fetch(ipGeoLocationUrl(search, process.env.FM_002_IPGEOLOCATION_KEY))
         const data = await res.json()
         return {
             statusCode: 200,
@@ -34,9 +34,13 @@ exports.handler = async (event) => {
             body: JSON.stringify(data)
         }
     } catch (e) {
+
         console.log('ERROR', e)
         return {
             statusCode: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify({message: "Something went wrong"})
         }
     }
