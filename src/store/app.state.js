@@ -9,11 +9,11 @@ const state = reactive(
     })
 
 function setLocationData(data) {
-    const {ip, city, region, postalCode, timezone: time_zone, lat: latitude, lng: longitude, isp} = data;
+    const {ip, city, state_prov, postalCode, time_zone, latitude, longitude, isp} = data;
     state.locationData = {
         'IP Address': ip,
-        'Location': `${city}, ${region}${postalCode ? `, ${postalCode}` : ''}`,
-        'Timezone': `UTC ${time_zone.offset}`,
+        'Location': `${city}, ${state_prov}${postalCode ? `, ${postalCode}` : ''}`,
+        'Timezone': `UTC ${time_zone.offset.toString().padStart(2, '0')}:00`,
         'ISP': isp,
     }
     state.coords = [latitude, longitude]
@@ -39,8 +39,7 @@ async function getIP(searchString = '') {
         })
 
         const data = await ipData.json()
-
-        console.log(data)
+        
         if (data.code) {
             switch (data.code) {
                 case 403:
