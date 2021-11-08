@@ -23,7 +23,7 @@ function ipGeoLocationUrl(query, key) {
 
 exports.handler = async (event) => {
     try {
-        const {search} = await JSON.parse(event?.body) ?? ''
+        const {search} = await JSON.parse(event?.body) ?? event.headers['client-ip']
         const res = await fetch(ipGeoLocationUrl(search, process.env.FM_002_IPGEOLOCATION_KEY))
         const data = await res.json()
         return {
