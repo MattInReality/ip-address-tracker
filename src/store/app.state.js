@@ -31,15 +31,25 @@ function clearError() {
 
 async function getIP(searchString = '') {
     state.loading = true
+    const myHeaders = new Headers()
+    myHeaders.append('accept', 'application/json')
     try {
-        const ipData = await fetch("../../.netlify/functions/ipgeo", {
+        const ipData = await fetch("http://localhost:9999/.netlify/functions/ipgeo", {
             method: 'POST',
-            body: JSON.stringify({search: searchString})
+            body: JSON.stringify({search: searchString}),
+            headers: myHeaders
         })
-        if (ipData.code) {
+
+        const data = await ipData.json()
+
+        if (data.code) {
+            switch (data.code) {
+                case 403:
+                    return setError(data.messages)
+            }
             return setError('Not found, please try something else.')
         }
-        return setLocationData(ipData)
+        return setLocationData(data)
 
     } catch (e) {
         return setError(e.message)

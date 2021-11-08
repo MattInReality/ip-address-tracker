@@ -1,6 +1,10 @@
 import fetch from 'node-fetch'
-import {createQueryKey} from '../../lib/api-calls'
 import querystring from 'querystring'
+import {validateDomain, validateIPAddress} from "../../lib/validators.js";
+
+function createQueryKey(query) {
+    return validateIPAddress(query) ? 'ipAddress' : validateDomain(query) ? 'domain' : ''
+}
 
 function validatedQueryString(query) {
     const key = createQueryKey(query)
@@ -19,12 +23,15 @@ function ipGeoLocationUrl(query, key) {
 
 exports.handler = async (event) => {
     try {
-        const {search} = event.body || ""
+        const {search} = await JSON.parse(event?.body) ?? ''
         const res = await fetch(ipGeoLocationUrl(search, process.env.FM_002_IPGEO_KEY))
         const data = await res.json()
         return {
             statusCode: 200,
-            body: data
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(data)
         }
     } catch (e) {
         console.log('ERROR', e)
