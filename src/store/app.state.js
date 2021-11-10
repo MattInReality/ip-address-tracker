@@ -32,7 +32,8 @@ async function getIP(searchString = '') {
     const myHeaders = new Headers()
     myHeaders.append('accept', 'application/json')
     try {
-        const ipData = await fetch("../../.netlify/functions/ipgeo", {
+        const domain = process.env.NODE_ENV === 'production' ? '../../' : "http://localhost:9999/"
+        const ipData = await fetch(`${domain}.netlify/functions/ipgeo`, {
             method: 'POST',
             body: JSON.stringify({search: searchString}),
             headers: myHeaders
@@ -40,12 +41,8 @@ async function getIP(searchString = '') {
 
         const data = await ipData.json()
 
-        if (data.code) {
-            switch (data.code) {
-                case 403:
-                    return setError(data.messages)
-            }
-            return setError('Not found, please try something else.')
+        if (ipData.status !== 200) {
+            return setError(data.message)
         }
         return setLocationData(data)
 
