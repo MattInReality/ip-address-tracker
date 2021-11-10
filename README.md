@@ -31,10 +31,12 @@ Users should be able to:
 
 ### Screenshot
 
+![](./screenshots/ip-address-tracker-desktop.jpg)
+
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/MattInReality/ip-address-tracker)
+- Live Site URL: [fm002.mattnorth.dev](https://fm002.mattnorth.dev)
 
 ## My process
 
@@ -58,7 +60,8 @@ I created a shared state module that allowed me to have a lightweight Vuex exper
 injection. It felt like a great example of what could be done with the composition API and why it was worth learning all
 the extra syntax.
 
-I also further stretched my legs with CSS grid and after many iterations, found a very flexible layout.
+I also further stretched my legs with CSS grid and after many iterations, found a very flexible layout that allowed the
+card to be properly positioned without any absolute positioning.
 
 Here is a snippet for the grid. I've removed any unrelated properties.
 
@@ -88,17 +91,18 @@ Here is a snippet for the grid. I've removed any unrelated properties.
 ```
 
 I found a [Dev.to blog post](https://dev.to/fabiorosado/hide-your-api-keys-with-netlify-functions-93m) about hiding API
-keys with Netlify functions. Which I planned to use for deployment... until my API allowance ran out. Currently I'm
-rethinking the whole project so...
+keys with Netlify functions. Which I planned to use for deployment... until my API allowance ran out. Having found a new
+api from [ipgeolocation.io](https://ipgeolocation.io/) I've rebuilt the state management to use the different response.
+I also spent a significant amount of time playing with the Netlify functions and Netlify CLI.
 
 The most important lesson learnt... To read the details of a free tier on an API before coding around it.
 
 ### Continued development
 
-It's endless really isn't it? I'd like to build something bigger in vue. Though I'm considering building my own api
-proxy instead so I can get around this problem of api keys.
-
-I think I need to spend some time looking up CSS grid layout strategies.
+My immediate continued development will likely be a portfolio site followed by another Frontend Mentors project. But I'm
+excited by the idea that the scope for future development is endless. I'd like to build something bigger in vue. I've
+touched on React before and have some Udemy courses so could do something there. For backend, I'd like to build myself
+an API proxy and learn more about rate limiting and CORS.
 
 ### Useful resources
 
