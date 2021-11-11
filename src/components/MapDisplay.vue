@@ -6,7 +6,7 @@
            :min-zoom="minZoom"
            :max-zoom="maxZoom"
            :center="mapCenter">
-      <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker v-if="!loading" class="map-markers" :lat-lng="mapCenter">
         <l-icon :icon-url="iconUrl" :icon-size="iconSize"></l-icon>
       </l-marker>
@@ -16,7 +16,6 @@
 
 <script>
 import {computed, ref} from "vue";
-import "leaflet/dist/leaflet.css"
 import {coords, loading} from "@/store/app.state";
 import {LMap, LTileLayer, LMarker, LIcon} from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -33,13 +32,16 @@ export default {
     const mapCenter = coords
     const iconWidth = ref(50)
     const iconHeight = ref(60)
-    const mapOptions = {
-      dragging: true,
-      touchZoom: 'center',
-      zoomControl: false,
-      inertia: true,
-      bounceAtZoomLimits: true,
-    }
+    const url = ref("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    const attribution = '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    const
+        mapOptions = {
+          dragging: true,
+          touchZoom: 'center',
+          zoomControl: false,
+          inertia: true,
+          bounceAtZoomLimits: true,
+        }
     const getZoom = computed(() => {
       if (zoom.value >= 5 && zoom.value <= 19) {
         return zoom.value
@@ -50,7 +52,7 @@ export default {
     const iconUrl = computed(() => '/icon-location.svg')
     const iconSize = computed(() => [iconWidth.value, iconHeight.value])
 
-    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading, mapOptions, minZoom, maxZoom}
+    return {zoom, getZoom, mapCenter, iconUrl, iconSize, loading, mapOptions, minZoom, maxZoom, url, attribution}
 
   }
 }
