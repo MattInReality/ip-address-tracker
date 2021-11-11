@@ -23,7 +23,7 @@
 <script>
 import {ref, watch} from "vue";
 import {getIP, error, loading, clearError, setError} from "@/store/app.state";
-import {validateDomain, validateIPAddress} from "../../lib/validators";
+import {validateIPAddress} from "../../lib/validators";
 
 
 export default {
@@ -42,11 +42,10 @@ export default {
 
     async function handleSubmit() {
       clearError()
-      const validDomain = validateDomain(search.value)
       const validIP = validateIPAddress(search.value)
       try {
-        if (!validDomain && !validIP) {
-          return setError('Please provide a valid IP address or domain')
+        if (!validIP) {
+          return setError('Please provide a valid IP address')
         }
         await getIP(search.value)
       } catch (e) {
