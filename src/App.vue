@@ -1,7 +1,7 @@
 <template>
-  <home-header role="search" class="main-header">Hello World</home-header>
-  <info-card role="data" class="info-card"></info-card>
-  <map-display role="map" class="map-card"></map-display>
+  <home-header class="main-header">Hello World</home-header>
+  <info-card class="info-card"></info-card>
+  <map-display class="map-card"></map-display>
 </template>
 
 <script>
