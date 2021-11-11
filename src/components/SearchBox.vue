@@ -10,7 +10,7 @@
           :disabled="loading"
           placeholder="Search any IP address or domain"
       />
-      <button type="submit">
+      <button type="submit" aria-label="Search Submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
           <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/>
         </svg>
